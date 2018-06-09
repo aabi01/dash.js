@@ -99,7 +99,7 @@ function ManifestLoader(config) {
                 mssHandler.registerEvents();
             }
             return parser;
-        } else if (data.indexOf('MPD') > -1) {
+        } else if (data.indexOf('MPD') > -1 || data.indexOf('static') > -1) {
             return DashParser(context).create();
         } else {
             return parser;

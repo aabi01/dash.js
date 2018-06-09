@@ -87,7 +87,8 @@ function DashParser() {
 
         const startTime = window.performance.now();
 
-        manifest = converter.xml_str2json(data);
+        // manifest = converter.xml_str2json(data);
+        manifest = JSON.parse(data);
 
         if (!manifest) {
             throw new Error('parsing the manifest failed');
@@ -99,7 +100,8 @@ function DashParser() {
 
         const ironedTime = window.performance.now();
 
-        log('Parsing complete: ( xml2json: ' + (jsonTime - startTime).toPrecision(3) + 'ms, objectiron: ' + (ironedTime - jsonTime).toPrecision(3) + 'ms, total: ' + ((ironedTime - startTime) / 1000).toPrecision(3) + 's)');
+        // log('Parsing complete: ( xml2json: ' + (jsonTime - startTime).toPrecision(3) + 'ms, objectiron: ' + (ironedTime - jsonTime).toPrecision(3) + 'ms, total: ' + ((ironedTime - startTime) / 1000).toPrecision(3) + 's)');
+        log('Parsing complete: ( json: ' + (jsonTime - startTime).toPrecision(3) + 'ms, objectiron: ' + (ironedTime - jsonTime).toPrecision(3) + 'ms, total: ' + ((ironedTime - startTime) / 1000).toPrecision(3) + 's)');
 
         return manifest;
     }
