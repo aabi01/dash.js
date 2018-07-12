@@ -99,7 +99,7 @@ module.exports = function (grunt) {
                     baseDir: './',
                     directory: true
                 },
-                startPath: '/samples/local-player/index.html',
+                startPath: '/samples/dash-if-reference-player/index.html',
                 plugins: [
                     {
                         module: 'bs-html-injector',

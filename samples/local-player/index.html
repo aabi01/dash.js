@@ -16,9 +16,11 @@
 <script src="../../dist/dash.all.debug.js"></script>
 <script>
     (function(){
+//        var url = "../../video/sintel_2000k_dash.mpd";
 //        var url = "https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd";
-        var url = "../../video/sintel_2000k_dash.json";
-        //var url = "../../video/sintel_2000k_dash.mpd";
+        
+        var url = "http://localhost:4000/video/sintel_2000k_dash.json";
+//        var url = 'http://localhost:4000/dash/bigbunny_dash.json';
         
         var player = dashjs.MediaPlayer().create();
         player.initialize(document.querySelector("#videoPlayer"), url, false);
