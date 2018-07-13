@@ -189,6 +189,13 @@ function ManifestLoader(config) {
 
                     manifest.baseUri = baseUri;
                     manifest.loadedTime = new Date();
+
+
+                    if (manifest.hasOwnProperty('hostUrl')) {
+                        manifest.baseUri = manifest.hostUrl;
+                    }
+
+
                     xlinkController.resolveManifestOnLoad(manifest);
                 } else {
                     eventBus.trigger(

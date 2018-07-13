@@ -83,19 +83,23 @@ function DashParser() {
     }
 
     function parse(data) {
+        // debugger;
         let manifest;
 
         const startTime = window.performance.now();
 
-        // manifest = converter.xml_str2json(data);
-        manifest = JSON.parse(data);
+        if(data.indexOf('<MPD') > -1){
+            manifest = converter.xml_str2json(data);
+        } else {
+            let jsonObject = JSON.parse(data);
+            manifest = jsonObject.dash;
+        }
 
         if (!manifest) {
             throw new Error('parsing the manifest failed');
         }
 
         const jsonTime = window.performance.now();
-
         objectIron.run(manifest);
 
         const ironedTime = window.performance.now();
@@ -103,6 +107,8 @@ function DashParser() {
         // log('Parsing complete: ( xml2json: ' + (jsonTime - startTime).toPrecision(3) + 'ms, objectiron: ' + (ironedTime - jsonTime).toPrecision(3) + 'ms, total: ' + ((ironedTime - startTime) / 1000).toPrecision(3) + 's)');
         log('Parsing complete: ( json: ' + (jsonTime - startTime).toPrecision(3) + 'ms, objectiron: ' + (ironedTime - jsonTime).toPrecision(3) + 'ms, total: ' + ((ironedTime - startTime) / 1000).toPrecision(3) + 's)');
 
+        // console.log('manifest: ', manifest);
+        // console.log('manifest: ', JSON.stringify(manifest));
         return manifest;
     }
 
